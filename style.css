@@ -1,0 +1,483 @@
+/* style.css */
+:root{
+  /* 🍂 THEMA — pas hier de kleuren aan */
+  --bg:#1a110b;
+  --card:#2a1a11;
+  --text:#fbf0de;
+  --accent:#b8481e;   /* roest */
+  --accent2:#e3a72f;  /* mosterdgeel */
+  --good:#a5c45a;     /* mos */
+  --bad:#ef7358;
+}
+
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+
+body{
+  min-height:100vh;
+  background:
+    radial-gradient(circle at top, #b8481e38, transparent),
+    radial-gradient(circle at bottom, #6b2a1260, transparent),
+    var(--bg);
+  color:var(--text);
+  font-family: system-ui, sans-serif;
+  overflow:auto;
+}
+
+/* HERFSTBLADEREN */
+.leaves{position:fixed;inset:0;pointer-events:none;overflow:hidden}
+.leaf{position:absolute;top:-10vh;opacity:.5;animation:fall linear infinite}
+@keyframes fall{
+  0%{transform:translate(0,-10vh) rotate(0)}
+  50%{transform:translate(45px,50vh) rotate(180deg)}
+  100%{transform:translate(-35px,110vh) rotate(360deg)}
+}
+@media (prefers-reduced-motion:reduce){.leaf{display:none}}
+
+.wrap{
+  display:flex;
+  justify-content:center;
+  padding:20px;
+}
+
+.card{
+  width:100%;
+  max-width:1100px;
+  background:var(--card);
+  border-radius:26px;
+  display:flex;
+  flex-direction:column;
+  overflow:hidden;
+}
+
+/* VIEWS */
+.view{
+  display:none;
+  padding:28px;
+  text-align:center;
+}
+.view.active{display:block}
+
+.subtitle{
+  font-size:20px;
+  opacity:.9;
+  margin-bottom:24px;
+}
+
+.smallNote{
+  margin-top:18px;
+  font-size:18px;
+  opacity:.95;
+}
+
+.tinyNote{
+  margin-top:12px;
+  font-size:14px;
+  opacity:.85;
+}
+
+/* FAMILY FOTO (KLEINER) */
+.familyHero{
+  max-width: 620px;
+  margin: 0 auto 22px;
+}
+.familyPhoto{
+  width: min(520px, 92%);
+  max-height: 340px;
+  object-fit: cover;
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,0.14);
+  box-shadow: 0 10px 28px rgba(0,0,0,0.30);
+}
+
+/* PLAYER SELECT */
+.players{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(220px,1fr));
+  gap:20px;
+  max-width:900px;
+  margin:0 auto 24px;
+}
+.player{
+  display:flex;
+  align-items:center;
+  gap:16px;
+  background:#00000033;
+  border-radius:22px;
+  padding:16px;
+  cursor:pointer;
+  border:2px solid transparent;
+}
+.player.selected{
+  border-color:var(--accent);
+  background:#ffffff11;
+}
+.player img{
+  width:80px;
+  height:80px;
+  object-fit:cover;
+  border-radius:50%;
+  border:2px solid rgba(255,255,255,0.35);
+}
+.player span{
+  font-size:24px;
+  font-weight:800;
+}
+
+/* QUIZ TOP ROW */
+.quizTopRow{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  margin-bottom:16px;
+}
+@media (max-width: 900px){
+  .quizTopRow{
+    flex-direction:column;
+    align-items:stretch;
+  }
+}
+
+.youCard{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:12px 14px;
+  border-radius:18px;
+  background: rgba(0,0,0,0.20);
+  border:1px solid rgba(255,255,255,0.12);
+  width: fit-content;
+}
+.youCard img{
+  width:58px;
+  height:58px;
+  object-fit:cover;
+  border-radius:50%;
+  border:2px solid rgba(255,255,255,0.30);
+  cursor: zoom-in;
+}
+.youMeta{text-align:left}
+.youLabel{font-size:14px;opacity:.85}
+.youName{font-size:20px;font-weight:900}
+
+.stats{font-size:20px}
+
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+}
+@media (max-width:900px){
+  .grid{grid-template-columns:1fr}
+}
+
+.panel{
+  background:#00000033;
+  border-radius:22px;
+  padding:22px;
+}
+
+.qtop{text-align:left}
+#qNr{font-size:18px;opacity:.85}
+#qText{font-size:28px;margin:10px 0}
+
+.imgwrap{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  min-height:240px;
+}
+.imgwrap img{
+  max-width:100%;
+  height:auto;
+  border-radius:18px;
+}
+
+/* ✅ FADE-IN (voor spelers die het gebruiken)
+   We houden CSS simpel; JS zet transition/opacity */
+#qImg.fade-init{
+  opacity: 0;
+}
+
+/* ANSWERS */
+#answers{
+  display:grid;
+  gap:18px;
+  margin-bottom:18px;
+}
+.answerBtn{
+  font-size:24px;
+  padding:20px;
+  border-radius:20px;
+  border:none;
+  cursor:pointer;
+  text-align:left;
+  background: rgba(255,255,255,.08);
+  color: var(--text);
+  border: 1px solid rgba(255,255,255,.14);
+}
+.answerBtn:hover{transform:translateY(-1px)}
+.answerBtn:disabled{
+  opacity: 1;
+  cursor: default;
+  filter: none;
+  transform:none;
+}
+.answerBtn:disabled:not(.correct):not(.wrong){
+  background: rgba(255,255,255,.06);
+  border-color: rgba(255,255,255,.14);
+  color: rgba(251,240,222,.92);
+}
+.answerBtn.wrong{
+  background: rgba(239,115,88,.16);
+  border-color: rgba(239,115,88,.70);
+}
+.answerBtn.correct{
+  background: rgba(165,196,90,.18);
+  border-color: rgba(165,196,90,.70);
+}
+
+/* FEEDBACK */
+.feedback{
+  text-align:left;
+  border-radius:18px;
+  padding:16px;
+  background: rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.12);
+  margin-bottom:16px;
+}
+.hidden{display:none}
+
+.feedbackHead{
+  font-size:20px;
+  font-weight:900;
+  margin-bottom:8px;
+}
+.feedbackHead.good{color:var(--good)}
+.feedbackHead.bad{color:var(--bad)}
+
+.feedbackBody{
+  font-size:18px;
+  line-height:1.5;
+  opacity:.95;
+}
+.feedbackBody p{margin:0 0 10px}
+.feedbackBody ul{margin:0 0 10px 18px; padding:0}
+.feedbackBody li{margin:4px 0}
+
+/* CONTROLS */
+.quizControls{
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+}
+
+/* BUTTONS */
+button, .btnGhost{
+  font-size:22px;
+  padding:16px 26px;
+  border-radius:22px;
+  border:none;
+  cursor:pointer;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  text-decoration:none;
+}
+.bigBtn{
+  font-size:26px;
+  padding:20px 40px;
+}
+.btnPrimary{
+  background:linear-gradient(135deg,var(--accent),#e3862b);
+  color:white;
+  font-weight:800;
+  transition: opacity 220ms ease;
+}
+.btnGhost{
+  background:rgba(255,255,255,0.08);
+  color:var(--text);
+  border:1px solid rgba(255,255,255,0.14);
+}
+button:disabled{opacity:.55; cursor:not-allowed}
+
+/* ✅ Doorzichtig (maar zichtbaar) voor timed spelers vóór/ tijdens countdown */
+#nextBtn.ghosted{
+  opacity: .22 !important;
+  cursor: not-allowed !important;
+}
+
+/* RESULT */
+.resultHero{
+  max-width: 980px;
+  margin: 14px auto 22px;
+  padding: 18px;
+  border-radius: 24px;
+  background: rgba(0,0,0,0.22);
+  border: 1px solid rgba(255,255,255,0.12);
+}
+.resultPhoto{
+  width: min(920px, 100%);
+  max-height: 520px;
+  object-fit: cover;
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,0.14);
+  box-shadow: 0 10px 28px rgba(0,0,0,0.30);
+  display:block;
+  margin: 0 auto 14px;
+}
+
+.diplomaWrap{ max-width: 980px; margin: 18px auto 6px; }
+.diplomaCard{
+  background: rgba(0,0,0,0.22);
+  border:1px solid rgba(255,255,255,0.12);
+  border-radius: 26px;
+  padding: 18px;
+  text-align:left;
+}
+.diplomaTop{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:12px;
+  flex-wrap:wrap;
+  margin-bottom: 14px;
+}
+.diplomaTitle{ font-size: 24px; font-weight: 1000; }
+.diplomaMeta{ font-size: 14px; opacity: .85; white-space: nowrap; }
+
+.diplomaStats{ display:flex; flex-wrap:wrap; gap:10px; margin-bottom: 14px; }
+.pill{
+  background: rgba(255,255,255,0.08);
+  border:1px solid rgba(255,255,255,0.12);
+  border-radius: 999px;
+  padding: 10px 12px;
+  font-size: 16px;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+}
+.pill.good{border-color: rgba(165,196,90,.55)}
+.pill.bad{border-color: rgba(239,115,88,.55)}
+
+.reviewHeaderRow{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  flex-wrap:wrap;
+  margin: 8px 0 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255,255,255,0.10);
+}
+.reviewActions{ display:flex; gap:10px; }
+
+.reviewList{ display:flex; flex-direction:column; gap:12px; }
+.reviewRow{
+  display:flex;
+  gap:14px;
+  align-items:stretch;
+  padding: 12px;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.12);
+}
+.reviewThumb{
+  flex: 0 0 130px;
+  height: 92px;
+  border-radius: 16px;
+  overflow:hidden;
+  background: rgba(0,0,0,0.18);
+  border:1px solid rgba(255,255,255,0.10);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.reviewThumb img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  cursor: zoom-in;
+}
+.reviewInfo{ flex:1; min-width: 0; }
+.reviewInfo h4{ margin: 0 0 8px; font-size: 18px; line-height: 1.25; }
+.reviewMeta{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  align-items:center;
+  font-size: 15px;
+  opacity: .95;
+}
+.badge{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-weight: 900;
+  font-size: 13px;
+  border:1px solid rgba(255,255,255,0.12);
+  background: rgba(0,0,0,0.18);
+}
+.badge.good{border-color: rgba(165,196,90,.55)}
+.badge.bad{border-color: rgba(239,115,88,.55)}
+
+.endControls{
+  display:flex;
+  justify-content:center;
+  margin-top: 16px;
+  gap: 18px;
+}
+
+/* LIGHTBOX */
+.lightbox{
+  position:fixed;
+  inset:0;
+  background: rgba(0,0,0,0.78);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding: 18px;
+  z-index: 9999;
+}
+.lightbox.hidden{display:none}
+.lightbox img{
+  width: min(1100px, 96vw);
+  max-height: 86vh;
+  object-fit: contain;
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,0.18);
+  box-shadow: 0 18px 50px rgba(0,0,0,0.55);
+}
+.lightboxClose{
+  position:absolute;
+  top: 14px;
+  right: 14px;
+  width: 48px;
+  height: 48px;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.10);
+  color: var(--text);
+  border: 1px solid rgba(255,255,255,0.14);
+}
+
+@media (max-width: 720px){
+  .view{padding:18px}
+  .bigBtn{font-size:22px; padding:16px 22px}
+  button, .btnGhost{font-size:20px; padding:14px 18px}
+  .resultHero{padding:14px}
+  .reviewRow{flex-direction:column}
+  .reviewThumb{flex:0 0 auto; width:100%; height:180px}
+  .diplomaTop{align-items:flex-start}
+  .diplomaMeta{white-space:normal}
+}
+
+.wrap{position:relative;z-index:1}
+.card{border:1px solid rgba(227,167,47,.22)}
+.title{margin:0 0 18px;font:700 clamp(30px,5vw,46px)/1.1 Georgia,"Times New Roman",serif;color:var(--accent2)}
+.subtitle,.diplomaTitle,#qText{font-family:Georgia,"Times New Roman",serif}
+.player.selected{border-color:var(--accent2)}
+button:focus-visible,.player:focus-visible{outline:3px solid var(--accent2);outline-offset:2px}

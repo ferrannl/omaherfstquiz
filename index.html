@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>🍂 De vd Venne Herfst Quiz 2025 🍁</title>
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Teksten en plaatjes komen uit config.js (data-text = sleutel in TEXTS) -->
+  <div class="leaves" id="leaves" aria-hidden="true"></div>
+
+  <div class="wrap">
+    <div class="card">
+
+      <section class="view active" id="playerView">
+        <h1 class="title" data-text="heading">De vd Venne Herfst Quiz</h1>
+        <div class="familyHero">
+          <img class="familyPhoto" id="introPhoto" alt="Familiefoto" />
+        </div>
+        <div class="subtitle" data-text="whoAreYou">Wie ben jij?</div>
+        <div class="smallNote" data-text="chooseNote"></div>
+        <div class="players" id="players" style="margin-top:20px"></div>
+        <div class="smallNote" data-text="noRushNote"></div>
+        <div class="tinyNote" data-text="changeNote"></div>
+        <br>
+        <button class="btnPrimary bigBtn" id="startBtn" data-text="startBtn" disabled>START DE QUIZ</button>
+      </section>
+
+      <section class="view" id="quizView">
+        <div class="quizTopRow">
+          <div class="youCard">
+            <img id="youImg" alt="Jij" />
+            <div class="youMeta">
+              <div class="youLabel">Jij:</div>
+              <div class="youName" id="youName"></div>
+            </div>
+          </div>
+          <div class="stats" id="stats"></div>
+        </div>
+
+        <div class="grid">
+   <div class="panel qtop">
+  <div id="qNr"></div>
+  <div id="qText"></div>
+  
+  <!-- 🔊 Knop om handmatig (opnieuw) voor te lezen -->
+  <button class="btnGhost" id="speakBtn" style="margin-top: 12px; font-size: 16px; padding: 10px 16px;">Hardop voorlezen 🔊</button>
+
+  <div class="imgwrap"><img id="qImg" alt="" /></div>
+</div>
+
+          <div class="panel">
+            <div id="answers"></div>
+            <div class="feedback hidden" id="feedback">
+              <div class="feedbackHead" id="feedbackHead"></div>
+              <div class="feedbackBody" id="feedbackBody"></div>
+            </div>
+            <div class="quizControls">
+              <button class="btnGhost" id="backBtn" data-text="backBtn" disabled>Terug</button>
+              <button class="btnPrimary" id="nextBtn" disabled>VOLGENDE</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="view" id="resultView">
+        <div class="resultHero">
+          <img class="resultPhoto" id="resultPhoto" alt="" />
+          <div id="resultSummary" class="subtitle" style="margin:10px 0 0"></div>
+        </div>
+
+        <div class="diplomaWrap">
+          <div class="diplomaCard">
+            <div class="diplomaTop">
+              <div class="diplomaTitle" data-text="scoreTitle"></div>
+              <div class="diplomaMeta" id="diplomaMeta"></div>
+            </div>
+            <div class="diplomaStats">
+              <div class="pill good">Goed: <b id="dipGood">0</b></div>
+              <div class="pill bad">Fout: <b id="dipBad">0</b></div>
+              <div class="pill">Totaal: <b id="dipTotal">0</b></div>
+            </div>
+            <div class="reviewHeaderRow">
+              <div class="subtitle" style="margin:0">Overzicht per vraag</div>
+              <div class="reviewActions">
+                <button class="btnGhost" id="showAllBtn">Alles</button>
+                <button class="btnGhost" id="showWrongBtn">Alleen fout</button>
+              </div>
+            </div>
+            <div class="reviewList" id="reviewList"></div>
+            <div class="endControls">
+              <button class="btnGhost" id="toTopBtn">Naar boven</button>
+              <button class="btnPrimary" id="restartBtn">Opnieuw</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <div class="lightbox hidden" id="lightbox" aria-hidden="true">
+    <button class="lightboxClose" id="lightboxClose" aria-label="Sluiten">✕</button>
+    <img id="lightboxImg" alt="" />
+  </div>
+
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
