@@ -86,14 +86,6 @@ const QUESTIONS = [
   uitleg: "Kubus B is de juiste weergave wanneer je het net van de kubus correct dichtvouwt!" 
 },
 
-{ 
-  vraag: "Als je de bovenste  dichtvouwt tot een kubus, welke van de onderstaande kubussen is dan juist?", 
-  image: "vraag3.png", 
-  antwoorden: ["Kubus A", "Kubus B", "Kubus C", "Kubus D"], 
-  correctIndex: 0, 
-  uitleg: "Kubus A is de enige juiste weergave als je het vlak met de blauwe stip en het gele vlak aan de zijkant naar elkaar toe vouwt!" 
-},
-
   { vraag:"Welk dier staat bekend als de koning van de jungle?", image:"", antwoorden:["Olifant","Leeuw","Tijger","Giraffe"], correctIndex:1, uitleg:"De leeuw wordt vaak de koning van de dieren genoemd 🦁" },
   { vraag:"Hoeveel poten heeft een insect?", image:"", antwoorden:["4","6","8","10"], correctIndex:1, uitleg:"Insecten hebben altijd zes poten 🐜" },
   { vraag:"Wat is het grootste landdier ter wereld?", image:"", antwoorden:["Neushoorn","Nijlpaard","Olifant","Giraf"], correctIndex:2, uitleg:"De Afrikaanse olifant is het grootste landdier 🐘" },
