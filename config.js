@@ -77,8 +77,8 @@ const QUESTIONS = [
     vraag: "Wat voor werk doet oma?", 
     image: "", 
     antwoorden: ["Niets", "Achter de kassa", "Tandartsassistente", "Schoonmaakster"], 
-    correctIndex: 0, 
-    uitleg: "Oma houdt van dansen! 💃" 
+    correctIndex: 2, 
+    uitleg: "Oma is tandartsassistente" 
   },
   { vraag: "Een hiervan kan niet met één lijn getekend worden. Welke is het?", image:"vraag5.png", antwoorden:["A", "B", "C", "D"], correctIndex: 2, uitleg:"Probeer maar"},
    { vraag:"Wat is de waarde van de banaan?", image:"fruit2.jpg", antwoorden:["5","6","7","8"], correctIndex:2, uitleg:"Druiven zijn 22. 22 − 15 = 7, dus de banaan is 7." },
